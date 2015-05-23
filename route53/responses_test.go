@@ -120,3 +120,62 @@ var ListHostedZonesExample = `<?xml version="1.0" encoding="utf-8"?>
     <IsTruncated>false</IsTruncated>
     <MaxItems>100</MaxItems>
 </ListHostedZonesResponse>`
+
+var CreateHealthCheckExample = `<?xml version="1.0" encoding="UTF-8"?>
+<CreateHealthCheckResponse xmlns="https://route53.amazonaws.com/doc/2013-04-01/">
+   <HealthCheck>
+      <Id>abcdef11-2222-3333-4444-555555fedcba</Id>
+      <CallerReference>example.com 192.0.2.17</CallerReference>
+      <HealthCheckConfig>
+         <IPAddress>192.0.2.17</IPAddress>
+         <Port>80</Port>
+         <Type>HTTP</Type>
+         <ResourcePath>/docs/route-53-health-check.html</ResourcePath>
+         <FullyQualifiedDomainName>example.com</FullyQualifiedDomainName>
+         <RequestInterval>30</RequestInterval>
+         <FailureThreshold>3</FailureThreshold>
+      </HealthCheckConfig>
+      <HealthCheckVersion>1</HealthCheckVersion>
+   </HealthCheck>
+</CreateHealthCheckResponse>`
+
+var ListHealthChecksExample = `<?xml version="1.0" encoding="UTF-8"?>
+<ListHealthChecksResponse xmlns="https://route53.amazonaws.com/doc/2013-04-01/">
+   <HealthChecks>
+      <HealthCheck>
+         <Id>abcdef11-2222-3333-4444-555555fedcba</Id>
+         <CallerReference>example.com 192.0.2.17</CallerReference>
+         <HealthCheckConfig>
+            <IPAddress>192.0.2.17</IPAddress>
+            <Port>80</Port>
+            <Type>HTTP</Type>
+            <ResourcePath>/docs/route-53-health-check.html</ResourcePath>
+            <FullyQualifiedDomainName>example.com</FullyQualifiedDomainName>
+            <RequestInterval>30</RequestInterval>
+            <FailureThreshold>3</FailureThreshold>
+         </HealthCheckConfig>
+         <HealthCheckVersion>2</HealthCheckVersion>
+      </HealthCheck>
+   </HealthChecks>
+   <IsTruncated>true</IsTruncated>
+   <NextMarker>aaaaaaaa-1234-5678-9012-bbbbbbcccccc</NextMarker>
+   <MaxItems>1</MaxItems>
+</ListHealthChecksResponse>`
+
+var GetHealthCheckExample = `<?xml version="1.0" encoding="UTF-8"?>
+<GetHealthCheckResponse xmlns="https://route53.amazonaws.com/doc/2013-04-01/">
+   <HealthCheck>
+      <Id>abcdef11-2222-3333-4444-555555fedcba</Id>
+      <CallerReference>example.com 192.0.2.17</CallerReference>
+      <HealthCheckConfig>
+         <IPAddress>192.0.2.17</IPAddress>
+         <Port>80</Port>
+         <Type>HTTP</Type>
+         <ResourcePath>/docs/route-53-health-check.html</ResourcePath>
+         <FullyQualifiedDomainName>example.com</FullyQualifiedDomainName>
+         <RequestInterval>30</RequestInterval>
+         <FailureThreshold>3</FailureThreshold>
+      </HealthCheckConfig>
+      <HealthCheckVersion>2</HealthCheckVersion>
+   </HealthCheck>
+</GetHealthCheckResponse>`
