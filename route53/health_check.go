@@ -7,6 +7,15 @@ import (
 	"time"
 )
 
+type UpdateHealthCheckRequest struct {
+	CallerReference   string            `xml:"CallerReference"`
+	HealthCheckConfig HealthCheckConfig `xml:"HealthCheckConfig"`
+}
+
+type UpdateHealthCheckResponse struct {
+	HealthCheck HealthCheck `xml:"HealthCheck"`
+}
+
 type CreateHealthCheckRequest struct {
 	CallerReference   string            `xml:"CallerReference"`
 	HealthCheckConfig HealthCheckConfig `xml:"HealthCheckConfig"`
@@ -32,6 +41,18 @@ type HealthCheck struct {
 	CallerReference    string            `xml:"CallerReference"`
 	HealthCheckConfig  HealthCheckConfig `xml:"HealthCheckConfig"`
 	HealthCheckVersion uint8             `xml:"HealthCheckVersion"`
+}
+
+func (r *Route53) UpdateHealthCheck(id string, req *UpdateHealthCheckRequest) (*UpdateHealthCheckResponse, error) {
+	// Generate a unique caller reference if none provided
+	if req.CallerReference == "" {
+		req.CallerReference = time.Now().Format(time.RFC3339Nano)
+	}
+	out := &UpdateHealthCheckResponse{}
+	if err := r.query("POST", fmt.Sprintf("/%s/healthcheck/%s", APIVersion, id), req, out); err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (r *Route53) CreateHealthCheck(req *CreateHealthCheckRequest) (*CreateHealthCheckResponse, error) {
