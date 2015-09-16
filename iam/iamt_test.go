@@ -1,9 +1,9 @@
 package iam_test
 
 import (
-	"github.com/mitchellh/goamz/aws"
-	"github.com/mitchellh/goamz/iam"
-	"github.com/mitchellh/goamz/iam/iamtest"
+	"github.com/upfluence/goamz/aws"
+	"github.com/upfluence/goamz/iam"
+	"github.com/upfluence/goamz/iam/iamtest"
 	. "github.com/motain/gocheck"
 )
 

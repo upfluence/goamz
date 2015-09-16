@@ -14,7 +14,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/mitchellh/goamz/aws"
+	"github.com/upfluence/goamz/aws"
 )
 
 // The Route53 type encapsulates operations operations with the route53 endpoint.

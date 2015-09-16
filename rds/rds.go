@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/mitchellh/goamz/aws"
+	"github.com/upfluence/goamz/aws"
 )
 
 // The Rds type encapsulates operations operations with the Rds endpoint.

@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/mitchellh/goamz/aws"
+	"github.com/upfluence/goamz/aws"
 )
 
 // The AutoScaling type encapsulates operations operations with the autoscaling endpoint.
