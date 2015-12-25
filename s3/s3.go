@@ -622,7 +622,7 @@ func (b *Bucket) URL(path string) string {
 
 // SignedURL returns a signed URL that allows anyone holding the URL
 // to retrieve the object at path. The signature is valid until expires.
-func (b *Bucket) SignedURL(path string, expires time.Time) string {
+func (b *Bucket) SignedURL(path string, expires time.Time) (string, error) {
 	req := &request{
 		bucket: b.Name,
 		path:   path,
@@ -630,13 +630,13 @@ func (b *Bucket) SignedURL(path string, expires time.Time) string {
 	}
 	err := b.S3.prepare(req)
 	if err != nil {
-		panic(err)
+		return "", err
 	}
 	u, err := req.url(true)
 	if err != nil {
-		panic(err)
+		return "", err
 	}
-	return u.String()
+	return u.String(), nil
 }
 
 type request struct {
