@@ -26,12 +26,12 @@ type CreateHealthCheckResponse struct {
 }
 
 type HealthCheckConfig struct {
-	IPAddress                string `xml:"IPAddress"`
-	Port                     string `xml:"Port"`
+	IPAddress                string `xml:"IPAddress,omitempty"`
+	Port                     string `xml:"Port,omitempty"`
 	Type                     string `xml:"Type"`
-	ResourcePath             string `xml:"ResourcePath"`
-	FullyQualifiedDomainName string `xml:"FullyQualifiedDomainName"`
-	SearchString             string `xml:"SearchString"`
+	ResourcePath             string `xml:"ResourcePath,omitempty"`
+	FullyQualifiedDomainName string `xml:"FullyQualifiedDomainName,omitempty"`
+	SearchString             string `xml:"SearchString,omitempty"`
 	RequestInterval          uint8  `xml:"RequestInterval"`
 	FailureThreshold         uint8  `xml:"FailureThreshold"`
 }
