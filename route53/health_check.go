@@ -8,8 +8,12 @@ import (
 )
 
 type UpdateHealthCheckRequest struct {
-	CallerReference   string            `xml:"CallerReference"`
-	HealthCheckConfig HealthCheckConfig `xml:"HealthCheckConfig"`
+	IPAddress                string `xml:"IPAddress,omitempty"`
+	Port                     string `xml:"Port,omitempty"`
+	ResourcePath             string `xml:"ResourcePath,omitempty"`
+	FullyQualifiedDomainName string `xml:"FullyQualifiedDomainName,omitempty"`
+	SearchString             string `xml:"SearchString,omitempty"`
+	FailureThreshold         uint8  `xml:"FailureThreshold"`
 }
 
 type UpdateHealthCheckResponse struct {
@@ -44,10 +48,6 @@ type HealthCheck struct {
 }
 
 func (r *Route53) UpdateHealthCheck(id string, req *UpdateHealthCheckRequest) (*UpdateHealthCheckResponse, error) {
-	// Generate a unique caller reference if none provided
-	if req.CallerReference == "" {
-		req.CallerReference = time.Now().Format(time.RFC3339Nano)
-	}
 	out := &UpdateHealthCheckResponse{}
 	if err := r.query("POST", fmt.Sprintf("/%s/healthcheck/%s", APIVersion, id), req, out); err != nil {
 		return nil, err
