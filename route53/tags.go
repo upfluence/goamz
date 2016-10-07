@@ -32,6 +32,13 @@ type ListTagsForResourceResponse struct {
 	ResourceTagSet ResourceTagSet `xml:"ResourceTagSet"`
 }
 
+type ChangeTagsForResourceRequest struct {
+	AddTags       *[]Tag    `xml:"AddTags>Tag,omitempty"`
+	RemoveTagKeys *[]string `xml:"RemoveTagKeys>Key,omitempty"`
+}
+
+type ChangeTagsForResourceResponse struct{}
+
 func (r *Route53) ListTagsForResource(resourceID, resourceType string) (*ListTagsForResourceResponse, error) {
 	out := &ListTagsForResourceResponse{}
 	err := r.query("GET", fmt.Sprintf("/%s/tags/%s/%s", APIVersion, resourceType, resourceID), nil, out)
@@ -48,4 +55,13 @@ func (r *Route53) ListTagsForResources(resourceType string, req *ListTagsForReso
 		return nil, err
 	}
 	return out, nil
+}
+
+func (r *Route53) ChangeTagsForResource(resourceID, resourceType string, req *ChangeTagsForResourceRequest) error {
+	return r.query(
+		"POST",
+		fmt.Sprintf("/%s/tags/%s/%s", APIVersion, resourceType, resourceID),
+		req,
+		&ChangeTagsForResourceResponse{},
+	)
 }
