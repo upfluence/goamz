@@ -443,6 +443,7 @@ type Key struct {
 	Key          string
 	LastModified string
 	Size         int64
+	ContentType  string
 	// ETag gives the hex-encoded MD5 sum of the contents,
 	// surrounded with double-quotes.
 	ETag         string
@@ -587,6 +588,7 @@ func (b *Bucket) GetKey(path string) (*Key, error) {
 		}
 		key.Key = path
 		key.LastModified = resp.Header.Get("Last-Modified")
+		key.ContentType = resp.Header.Get("Content-Type")
 		key.ETag = resp.Header.Get("ETag")
 		contentLength := resp.Header.Get("Content-Length")
 		size, err := strconv.ParseInt(contentLength, 10, 64)
