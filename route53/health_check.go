@@ -13,7 +13,7 @@ type UpdateHealthCheckRequest struct {
 	ResourcePath             string `xml:"ResourcePath,omitempty"`
 	FullyQualifiedDomainName string `xml:"FullyQualifiedDomainName,omitempty"`
 	SearchString             string `xml:"SearchString,omitempty"`
-	FailureThreshold         uint8  `xml:"FailureThreshold"`
+	FailureThreshold         uint64 `xml:"FailureThreshold"`
 }
 
 type UpdateHealthCheckResponse struct {
@@ -36,15 +36,15 @@ type HealthCheckConfig struct {
 	ResourcePath             string `xml:"ResourcePath,omitempty"`
 	FullyQualifiedDomainName string `xml:"FullyQualifiedDomainName,omitempty"`
 	SearchString             string `xml:"SearchString,omitempty"`
-	RequestInterval          uint8  `xml:"RequestInterval"`
-	FailureThreshold         uint8  `xml:"FailureThreshold"`
+	RequestInterval          uint64 `xml:"RequestInterval"`
+	FailureThreshold         uint64 `xml:"FailureThreshold"`
 }
 
 type HealthCheck struct {
 	ID                 string            `xml:"Id"`
 	CallerReference    string            `xml:"CallerReference"`
 	HealthCheckConfig  HealthCheckConfig `xml:"HealthCheckConfig"`
-	HealthCheckVersion uint8             `xml:"HealthCheckVersion"`
+	HealthCheckVersion uint64            `xml:"HealthCheckVersion"`
 }
 
 func (r *Route53) UpdateHealthCheck(id string, req *UpdateHealthCheckRequest) (*UpdateHealthCheckResponse, error) {
